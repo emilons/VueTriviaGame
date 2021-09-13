@@ -1,5 +1,5 @@
 <template>
-    <div>,
+    <div>
         <h1>{{ msg }}</h1>
         <b-button variant="primary">Start Game</b-button>
     </div>
