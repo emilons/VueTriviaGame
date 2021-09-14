@@ -1,9 +1,9 @@
 <template>
     <div>
       <span>Select difficulty</span>
-      <button class="btn btn-primary-outline" @click="handleButtonClick" :class="{active: difficulty == easy}" id="easy">Easy</button>
-      <button class="btn btn-primary-outline" @click="handleButtonClick" :class="{active: difficulty == medium}" id="medium">Medium</button>
-      <button class="btn btn-primary-outline" @click="handleButtonClick" :class="{active: difficulty == hard}" id="hard">Hard</button>
+      <button class="btn btn-primary" @click="handleButtonClick" :class="{active: difficulty == easy}" id="easy">Easy</button>
+      <button class="btn btn-primary" @click="handleButtonClick" :class="{active: difficulty == medium}" id="medium">Medium</button>
+      <button class="btn btn-primary" @click="handleButtonClick" :class="{active: difficulty == hard}" id="hard">Hard</button>
     </div>
 </template>
 
