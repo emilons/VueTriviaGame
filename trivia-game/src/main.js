@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import StartScreen from './StartScreen'
+import StartScreen from './Questionaire'
 
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
