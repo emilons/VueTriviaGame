@@ -7,9 +7,11 @@ export default new Vuex.StartScreen({
 
     state: {
         username: "",
-        highscore: 0,
+        score: 0,
         profile: {},
-        error: ""
+        error: "",
+
+
         
     },
     mutations: {
@@ -20,7 +22,7 @@ export default new Vuex.StartScreen({
             state.username = payload
         },
         setHighscore: (state, payload) =>{
-            state.highscore = payload
+            state.score = payload
         },
         setError: (state, payload) =>{
             state.error = payload
