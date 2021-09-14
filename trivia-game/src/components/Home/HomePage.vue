@@ -1,14 +1,22 @@
 <template>
     <div>
-        <h1></h1>
-        <b-button variant="primary">Start Game</b-button>
+      <label>Username</label>
+      <input type="text" />
+      <MenuOption/>
     </div>
 </template>
 
 <script>
+
+import MenuOption from './MenuOption.vue';
+
 export default {
   name: 'HomePage',
+  components: {
+    MenuOption
+  }
 }
+
 </script>
 
 <style>
