@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex)
 
-export default new Vuex.StartScreen({
+export default new Vuex.Store({
 
     state: {
         username: "",
@@ -11,14 +11,12 @@ export default new Vuex.StartScreen({
         profile: {},
         error: "",
 
-
-        
     },
     mutations: {
         setProfile: (state, payload) =>{
             state.profile = payload
         },
-        setUserName: (state, payload) =>{
+        setUsername: (state, payload) =>{
             state.username = payload
         },
         setHighscore: (state, payload) =>{
