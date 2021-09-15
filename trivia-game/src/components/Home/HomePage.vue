@@ -1,18 +1,11 @@
 <template>
      <div class="container">
-    <label>Username:</label>
-    <input type="text" />
-    <MenuOption/>
+        <label>Username:</label>
+        <input @input="onUserNameChange" type="text"/>
+        <b-button variant="primary" @click="onClickGoToQuestions">Start Game</b-button>
+        <MenuOption/>
+      <div>
       
-
-  <div class="container">
-    <label>Username:</label>
-    <input type="text" />
-    <b-button variant="primary" @click="onClickGoToQuestions">Start Game</b-button>
-    <MenuOption/>
-
-   
-  </div>   
 </template>
 
 <script>
@@ -43,8 +36,7 @@ export default {
 
     },
     onUserNameChange(event){
-
-
+      this.setUsername(event.target.value.trim())
     },
 
   }
