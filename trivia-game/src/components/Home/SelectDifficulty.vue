@@ -1,11 +1,15 @@
 <template>
-    <div>
-      <span>Select difficulty</span>
-      <button class="btn btn-primary" @click="handleButtonClick" :class="{'btn-danger': difficulty == 'easy'}" id="easy">Easy</button>
-      <button class="btn btn-primary" @click="handleButtonClick" :class="{'btn-danger': difficulty == 'medium'}" id="medium">Medium</button>
-      <button class="btn btn-primary" @click="handleButtonClick" :class="{'btn-danger': difficulty == 'hard'}" id="hard">Hard</button>
-      <p style="visibility: hidden">{{difficulty}}</p>
+  <div>
+    <div class="row">
+      <div class="col-sm-12">
+        <span>Select difficulty: </span>
+        <button class="btn btn-primary" @click="handleButtonClick" :class="{'btn-danger': difficulty == 'easy'}" id="easy">Easy</button>
+        <button class="btn btn-primary" @click="handleButtonClick" :class="{'btn-danger': difficulty == 'medium'}" id="medium">Medium</button>
+        <button class="btn btn-primary" @click="handleButtonClick" :class="{'btn-danger': difficulty == 'hard'}" id="hard">Hard</button>
+        <p style="visibility: hidden">{{difficulty}}</p>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -32,9 +36,9 @@ export default {
 .btn {
   margin: 0.5rem;
 }
-
+/*
 .btn-danger {
-  background-color: yellow;
-  border-color: yellow;
-}
+  background-color: yellow !important;
+  border-color: yellow !important;
+}*/
 </style>

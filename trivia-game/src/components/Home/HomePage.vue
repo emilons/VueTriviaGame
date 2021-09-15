@@ -1,9 +1,9 @@
 <template>
-    <div>
-      <label>Username</label>
-      <input type="text" />
-      <MenuOption/>
-    </div>
+  <div class="container">
+    <label>Username:</label>
+    <input type="text" />
+    <MenuOption/>
+  </div>
 </template>
 
 <script>
