@@ -1,6 +1,20 @@
-import { get } from "core-js/core/dict"
+//import { get } from "core-js/core/dict"
 
 export const LoginAPI = {
+
+
+     /* getSpecificUser(){
+        const apiURL = 'https://git.heroku.com/vue-questionaire.git'
+        const username = 'mega-mind'
+
+        fetch(`${apiURL}/trivia?username=${username}`)
+        .then(response => response.json())
+        .then(results => {
+            // results will be an array of users that match the username of mega-mind.
+        })
+        .catch(error => {
+        })
+    }, */
 
     register(username){
 
@@ -28,13 +42,13 @@ export const LoginAPI = {
             // newUser is the new user with an id
             })
             .catch(error => {
-            })
+        })
 
-        },
-        updateHighScore(highScore){
-            const apiURL = 'https://git.heroku.com/vue-questionaire.git'
-            const apiKey = 'EdvardsAPIKEY'
-            const userId = 1 // Update user with id 1
+    },
+    /* updateHighScore(highScore){
+        const apiURL = 'https://git.heroku.com/vue-questionaire.git'
+        const apiKey = 'EdvardsAPIKEY'
+        const userId = 1 // Update user with id 1
 
         fetch(`${apiURL}/trivia/${userId}`, {
                 method: 'PATCH', // NB: Set method to PATCH
@@ -58,18 +72,18 @@ export const LoginAPI = {
             })
             .catch(error => {
             })
-        },
+    },
 
     GetUserByName(userName){
         const apiURL = 'https://git.heroku.com/vue-questionaire.git'
         //const username = 'mega-mind'
 
-    fetch(`${apiURL}/trivia?username=${userName}`)
-        .then(response => response.json())
-        .then(results => {
-            // results will be an array of users that match the username of mega-mind.
-        })
-        .catch(error => {
-        })
-    }
+        fetch(`${apiURL}/trivia?username=${userName}`)
+            .then(response => response.json())
+            .then(results => {
+                // results will be an array of users that match the username of mega-mind.
+            })
+            .catch(error => {
+            }) 
+    } */
 }

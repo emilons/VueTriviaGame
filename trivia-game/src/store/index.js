@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {loginAPI} from "@components/login/loginAPI"
+import {LoginAPI} from "@/components/Login/LoginAPI"
 
 Vue.use(Vuex)
 
@@ -40,7 +40,7 @@ export default new Vuex.Store({
                     }
                 })
 
-                const user = await loginAPI.register(loginDetails)
+                const user = await LoginAPI.register(loginDetails)
 
                 if (user) {
                     commit("setProfile, user")
