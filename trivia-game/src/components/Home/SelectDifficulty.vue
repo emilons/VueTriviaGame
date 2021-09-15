@@ -1,11 +1,10 @@
 <template>
     <div>
       <span>Select difficulty</span>
-      <button class="btn btn-primary" @click="handleButtonClick"  id="easy">Easy</button>
-      <button class="btn btn-primary" @click="handleButtonClick"  id="medium">Medium</button>
-      <button class="btn btn-primary" @click="handleButtonClick"  id="hard">Hard</button>
-      <p>{{difficulty}}</p>
-      
+      <button class="btn btn-primary" @click="handleButtonClick" :class="{'btn-danger': difficulty == 'easy'}" id="easy">Easy</button>
+      <button class="btn btn-primary" @click="handleButtonClick" :class="{'btn-danger': difficulty == 'medium'}" id="medium">Medium</button>
+      <button class="btn btn-primary" @click="handleButtonClick" :class="{'btn-danger': difficulty == 'hard'}" id="hard">Hard</button>
+      <p style="visibility: hidden">{{difficulty}}</p>
     </div>
 </template>
 
@@ -22,7 +21,8 @@ export default {
   },
   methods: {
     handleButtonClick(e) {
-      this.difficulty = e.target.id;
+      const buttonElement = e.target;
+      this.difficulty = buttonElement.id;
     }
   }
 }
@@ -33,8 +33,8 @@ export default {
   margin: 0.5rem;
 }
 
-.active {
-  color:green;
-  background-color: red;
+.btn-danger {
+  background-color: yellow;
+  border-color: yellow;
 }
 </style>
