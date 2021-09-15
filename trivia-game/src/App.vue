@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view/>
-    <img alt="Vue logo" src="./assets/logo.png">
+    <h1>Welcome to trivia night!</h1>
     <HomePage/>
   </div>
 </template>
