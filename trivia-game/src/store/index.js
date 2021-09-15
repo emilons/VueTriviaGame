@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import {loginAPI} from "@components/login/loginAPI"
 
 Vue.use(Vuex)
 
@@ -29,8 +30,32 @@ export default new Vuex.Store({
     getters: {
 
     },
+
     actions: {
-        
+        async loginUser({state, commit}) {
+            try{
+                const loginDetails = JSON.stringify({
+                    user: {
+                        username: state.username
+                    }
+                })
+
+                const user = await loginAPI.register(loginDetails)
+
+                if (user) {
+                    commit("setProfile, user")
+
+                } 
+                else{
+                    commit("setError", "User was not found")
+
+                }
+            }
+            catch(e){
+                commit("setError", e.message)
+
+            }
+        }
     }
 
 })
