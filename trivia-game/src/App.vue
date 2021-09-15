@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <router-view/>
     <img alt="Vue logo" src="./assets/logo.png">
     <HomePage/>
   </div>
