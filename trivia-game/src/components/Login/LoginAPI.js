@@ -16,7 +16,7 @@ export const LoginAPI = {
         })
     }, */
 
-    register(username){
+    register(user){
 
         const apiURL = 'https://vue-questionaire.herokuapp.com'
         const apiKey = 'EdvardsAPIKEY'
@@ -27,9 +27,8 @@ export const LoginAPI = {
                     'X-API-Key': apiKey,
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ 
-                    username
-                })
+                body: JSON.stringify(user) 
+                
             })
             .then(response => {
             if (!response.ok) {
@@ -39,7 +38,7 @@ export const LoginAPI = {
             })
 
     }, 
-    /* updateHighScore(highScore){
+     updateHighScore(user){
         const apiURL = 'https://vue-questionaire.herokuapp.com/'
         const apiKey = 'EdvardsAPIKEY'
         const userId = 1 // Update user with id 1
@@ -79,5 +78,5 @@ export const LoginAPI = {
             })
             .catch(error => {
             }) 
-    } */
+    } 
 }

@@ -23,10 +23,10 @@ export default {
 
   },
   methods: {
-    ...mapActions(["loginUser"]),
+    ...mapActions(["loginNewUser"]),
     ...mapMutations(["setUsername", "setHighscore"]),
     onClickGoToQuestions(){
-      this.loginUser()
+      this.loginNewUser()
       if (!this.error){
         this.$router.push("/questions")
       }

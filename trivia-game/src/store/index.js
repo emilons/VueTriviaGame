@@ -20,7 +20,7 @@ export default new Vuex.Store({
         setUsername: (state, payload) =>{
             state.username = payload
         },
-        setHighscore: (state, payload) =>{
+        setHighScore: (state, payload) =>{
             state.score = payload
         },
         setError: (state, payload) =>{
@@ -32,56 +32,28 @@ export default new Vuex.Store({
     },
 
     actions: {
-        async loginUser({state, commit}) {
-            try{
-                const loginDetails = JSON.stringify({
-                    user: {
-                        username: state.username,
-                        score: state.score
-                    }
-                })
 
-                const user = await LoginAPI.register(loginDetails)
-
-                if (user) {
-                    commit("setProfile, user")
-
-                }
-                else{
-                    commit("setError", "User was not found")
-
-                }
-            }
-            catch(e){
-                commit("setError", e.message)
-
-            }
-        },
         async loginNewUser({state, commit}) {
             try{
-                const loginDetails = JSON.stringify({
-                    user: {
+                const registerDetails = {
+                    
                         username: state.username,
-                        score: state
+                        highScore: state.score
 
-                    }
-                })
+                    
+                }
 
-                const user = await LoginAPI.register(loginDetails)
-
+                const user = await LoginAPI.register(registerDetails)
                 if (user) {
-                    commit("setUsername, user")
-
+                    commit("setProfile", user)
                 }
                 else{
                     commit("setError", "The username is not accepted")
-
                 }
             }
             catch(e){
                 commit("setError", e.message)
-
-            }
+             }
         }
     }
 
