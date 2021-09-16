@@ -36,45 +36,36 @@ export const LoginAPI = {
             })
         return user;
     }, 
-    //  updateHighScore(user){
-    //     const apiURL = 'https://vue-questionaire.herokuapp.com/'
-    //     const apiKey = 'EdvardsAPIKEY'
-    //     const userId = 1 // Update user with id 1
+     updateHighScore(score){
+        const apiURL = 'https://vue-questionaire.herokuapp.com'
+        const apiKey = 'EdvardsAPIKEY'
+        const userId = 1; // Update user with id
 
-    //     fetch(`${apiURL}/trivia/${userId}`, {
-    //             method: 'PATCH', // NB: Set method to PATCH
-    //             headers: {
-    //                 'X-API-Key': apiKey,
-    //             'Content-Type': 'application/json'
-    //             },
-    //             body: JSON.stringify({
-    //                 // Provide new highScore to add to user with id 1
-    //                 highScore: 100  
-    //             })
-    //         })
-    //         .then(response => {
-    //         if (!response.ok) {
-    //             throw new Error('Could not update high score')
-    //         }
-    //         return response.json()
-    //         })
-    //         .then(updatedUser => {
-    //         // updatedUser is the user with the Patched data
-    //         })
-    //         .catch(error => {
-    //         })
-    // },
+        fetch(`${apiURL}/trivia/${userId}`, {
+                method: 'PATCH', // NB: Set method to PATCH
+                headers: {
+                    'X-API-Key': apiKey,
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(score)
+            })
+            .then(response => {
+            if (!response.ok) {
+                throw new Error('Could not update high score')
+            }
+            })
+            return score;
 
-    // GetUserByName(userName){
-    //     const apiURL = 'https://git.heroku.com/vue-questionaire.git'
+    },
+
+    // GetUserByName(username){
+    //     const apiURL = 'https://vue-questionaire.herokuapp.com'
     //     //const username = 'mega-mind'
 
-    //     fetch(`${apiURL}/trivia?username=${userName}`)
+    //     fetch(`${apiURL}/trivia?username=${username}`)
     //         .then(response => response.json())
-    //         .then(results => {
-    //             // results will be an array of users that match the username of mega-mind.
-    //         })
-    //         .catch(error => {
-    //         }) 
+    //     return apiURL;
+            
     // } 
+    
 }

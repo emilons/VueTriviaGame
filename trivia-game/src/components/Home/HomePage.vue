@@ -18,7 +18,7 @@ export default {
     MenuOption
   },
     computed: {
-    ...mapState(['username','error','difficulty','selectedCategory', 'selectedQuestionAmount']),
+    ...mapState(['username',' error', 'difficulty', 'selectedCategory', 'selectedQuestionAmount']),
   },
   methods: {
     ...mapActions(["loginNewUser"]),

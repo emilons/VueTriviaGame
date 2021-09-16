@@ -7,14 +7,15 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        username: "",
-        score: 0,
+        username: "w",
+        score: 20,
         profile: {},
         error: "",
         categories: [],
         difficulty: "easy",
         selectedCategory: {id: 9, name: "General Knowledge"},
-        selectedQuestionAmount: 10
+        selectedQuestionAmount: 10,
+        listOfNames: []
     },
     mutations: {
         setProfile: (state, payload) =>{
@@ -41,7 +42,11 @@ export default new Vuex.Store({
         },
         setSelectedQuestionAmount: (state, payload) => {
             state.selectedQuestionAmount = payload
+        },
+        setListOfNames: (state, payload) => {
+            state.listOfNames = payload
         }
+
     },
     actions: {
         async fetchCategories({commit}) {
@@ -67,7 +72,47 @@ export default new Vuex.Store({
             catch(e){
                 commit("setError", e.message)
              }
-        }
+        },
+
+        async updateScore({state, commit}) {
+
+            try{
+
+                const newHighScore = {
+                    highScore: state.score
+                }
+                const theScore = await LoginAPI.updateHighScore(newHighScore);
+                if(theScore){
+                    commit("setHighscore", theScore)
+                }
+                else{
+                    commit("setError", "Cant update Score")
+                }
+            }
+            catch(e){
+                commit("setError", e.message)
+
+            }
+        },
+        // async GetUserByName({state, commit}) {
+        //     try{
+        //         const displayNameID = {
+        //             username: state.username,
+        //             score: state.score
+        //         }
+        //         const thedisp = await LoginAPI.GetUserByName(displayNameID);
+        //         if(thedisp){
+        //             commit("setListOfNames", thedisp)
+        //         }
+        //         else{
+        //             commit("setError", "Cant show the user")
+        //         }
+        //     }
+        //     catch(e){
+        //         commit("setError", e.message)
+
+        //     }
+        // }
     }
 
 });
