@@ -35,7 +35,7 @@ export default {
       console.log(this.selectedQuestionAmount);
       this.loginNewUser()
       if (!this.error){
-        this.$router.push("/questions")
+        this.$router.push("/game")
       }
     }
   },

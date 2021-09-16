@@ -15,9 +15,9 @@ const routes = [
         component: () => import("../components/Home/HomePage.vue")
     },
     {
-        path: "/questions",
-        name: "QuestionPage",
-        component: () => import("../components/Question/QuestionPage.vue")
+        path: "/game",
+        name: "GamePage",
+        component: () => import("../components/Game/GamePage.vue")
     },
     {
         path: "/results",
