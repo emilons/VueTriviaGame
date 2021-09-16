@@ -27,14 +27,13 @@ export default new Vuex.Store({
         },
         setCategories: (state, payload) => {
             state.categories = payload
-        },
+        }
     },
     actions: {
         async fetchCategories({commit}) {
             const [error, categories] = await getTriviaCategories();
             commit('setError', error);
             commit('setCategories', categories);
-            console.log(categories);
         }
     }
 

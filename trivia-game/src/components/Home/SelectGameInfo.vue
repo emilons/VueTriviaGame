@@ -18,28 +18,25 @@
 
 <script>
 
-import { mapActions} from 'vuex';
+import {mapState, mapActions} from 'vuex';
 
 export default {
   name: 'SelectGameInfo',
   data() {
-    
+    let defaultCategory = {id: 9, name: "General Knowledge"}
     return {
-      categories: [],
-      selected: {id: 1, name: "something"}
+      selected: defaultCategory
     }
   },
   async created() {
     await this.fetchCategories();
   },
   computed: {
-    // ...mapState(['categories']),
+    ...mapState(['categories']),
   },
   methods: {
     ...mapActions(['fetchCategories'])
   }
-
-
 }
 </script>
 
