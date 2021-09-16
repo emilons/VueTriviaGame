@@ -18,7 +18,7 @@ export const LoginAPI = {
 
     register(username){
 
-        const apiURL = 'https://git.heroku.com/vue-questionaire.git'
+        const apiURL = 'https://vue-questionaire.herokuapp.com'
         const apiKey = 'EdvardsAPIKEY'
 
         fetch(`${apiURL}/trivia`, {
@@ -28,8 +28,7 @@ export const LoginAPI = {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ 
-                    username: username,
-                    score: 0 
+                    username
                 })
             })
             .then(response => {
@@ -38,15 +37,10 @@ export const LoginAPI = {
             }
             return response.json()
             })
-            .then(newUser => {
-            // newUser is the new user with an id
-            })
-            .catch(error => {
-        })
 
-    },
+    }, 
     /* updateHighScore(highScore){
-        const apiURL = 'https://git.heroku.com/vue-questionaire.git'
+        const apiURL = 'https://vue-questionaire.herokuapp.com/'
         const apiKey = 'EdvardsAPIKEY'
         const userId = 1 // Update user with id 1
 

@@ -36,7 +36,8 @@ export default new Vuex.Store({
             try{
                 const loginDetails = JSON.stringify({
                     user: {
-                        username: state.username
+                        username: state.username,
+                        score: state.score
                     }
                 })
 
@@ -45,9 +46,35 @@ export default new Vuex.Store({
                 if (user) {
                     commit("setProfile, user")
 
-                } 
+                }
                 else{
                     commit("setError", "User was not found")
+
+                }
+            }
+            catch(e){
+                commit("setError", e.message)
+
+            }
+        },
+        async loginNewUser({state, commit}) {
+            try{
+                const loginDetails = JSON.stringify({
+                    user: {
+                        username: state.username,
+                        score: state
+
+                    }
+                })
+
+                const user = await LoginAPI.register(loginDetails)
+
+                if (user) {
+                    commit("setUsername, user")
+
+                }
+                else{
+                    commit("setError", "The username is not accepted")
 
                 }
             }
