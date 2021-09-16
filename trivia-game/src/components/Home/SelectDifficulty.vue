@@ -6,7 +6,7 @@
         <button class="btn btn-primary" @click="handleButtonClick" :class="{'btn-danger': difficulty == 'easy'}" id="easy">Easy</button>
         <button class="btn btn-primary" @click="handleButtonClick" :class="{'btn-danger': difficulty == 'medium'}" id="medium">Medium</button>
         <button class="btn btn-primary" @click="handleButtonClick" :class="{'btn-danger': difficulty == 'hard'}" id="hard">Hard</button>
-        <p style="visibility: hidden">{{difficulty}}</p>
+        
       </div>
     </div>
   </div>
@@ -15,7 +15,7 @@
 <script>
 
 //<button class="btn btn-primary-outline" @click="handleButtonClick" :class="{active: difficulty == easy}" id="easy">Easy</button>
-
+//<p style="visibility: hidden">{{difficulty}}</p>
 export default {
   name: 'SelectDifficulty',
   data() {

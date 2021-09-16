@@ -1,9 +1,9 @@
 
 export const getTriviaCategories = async () => {
     try {
-        const {results} = await fetch('https://opentdb.com/api_category.php')
+        const {trivia_categories} = await fetch('https://opentdb.com/api_category.php')
             .then(r => r.json())
-        return [null, results];
+        return [null, trivia_categories];
 
     }
     catch (e) {
