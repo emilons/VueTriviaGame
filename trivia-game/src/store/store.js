@@ -10,7 +10,10 @@ export default new Vuex.Store({
         score: 0,
         profile: {},
         error: "",
-        categories: []
+        categories: [],
+        difficulty: "easy",
+        selectedCategory: {id: 9, name: "General Knowledge"},
+        selectedQuestionAmount: 10
     },
     mutations: {
         setProfile: (state, payload) =>{
@@ -27,6 +30,16 @@ export default new Vuex.Store({
         },
         setCategories: (state, payload) => {
             state.categories = payload
+        },
+        setDifficulty: (state, payload) => {
+            state.difficulty = payload
+        }
+        ,
+        setSelectedCategory: (state, payload) => {
+            state.selectedCategory = payload
+        },
+        setSelectedQuestionAmount: (state, payload) => {
+            state.selectedQuestionAmount = payload
         }
     },
     actions: {

@@ -16,6 +16,7 @@
 
 //<button class="btn btn-primary-outline" @click="handleButtonClick" :class="{active: difficulty == easy}" id="easy">Easy</button>
 //<p style="visibility: hidden">{{difficulty}}</p>
+import {mapMutations} from 'vuex';
 export default {
   name: 'SelectDifficulty',
   data() {
@@ -24,9 +25,11 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['setDifficulty']),
     handleButtonClick(e) {
       const buttonElement = e.target;
       this.difficulty = buttonElement.id;
+      this.setDifficulty(this.difficulty);
     }
   }
 }

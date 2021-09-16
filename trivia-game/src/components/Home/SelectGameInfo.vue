@@ -2,11 +2,16 @@
     <div>
         <div class="row">
             <div class="col-sm-6">
-                <p>number of questions</p>
+                <label class="form-label">Amount of questions</label>
+                <select id="questionAmount" class="form-select" v-model="amount" @change="handleSelectQuestionAmount">
+                      <option v-for="(value, index) in amountOptions" :key=index :value="value">
+                          {{ value }}
+                      </option>
+                </select>
             </div>
             <div class="col-sm-6">
-                <p>category</p>
-                <select id="categories" v-model="selected">
+                <label class="form-label">Category</label>
+                <select id="categories" class="form-select" v-model="selected" @change="handleSelectCategory">
                     <option v-for="category in categories" :key="category.id" :value="category">
                         {{ category.name }}
                     </option>
@@ -17,14 +22,16 @@
 </template>
 
 <script>
-
-import {mapState, mapActions} from 'vuex';
+import {mapState, mapActions, mapMutations} from 'vuex';
 
 export default {
   name: 'SelectGameInfo',
   data() {
-    let defaultCategory = {id: 9, name: "General Knowledge"}
+    let amountOptions = [10, 15, 20, 25, 30]
+    let defaultCategory = {id: 9, name: "General Knowledge"};
     return {
+      amount: amountOptions[0],
+      amountOptions,
       selected: defaultCategory
     }
   },
@@ -35,11 +42,24 @@ export default {
     ...mapState(['categories']),
   },
   methods: {
-    ...mapActions(['fetchCategories'])
+    ...mapActions(['fetchCategories']),
+    ...mapMutations(['setSelectedCategory', 'setSelectedQuestionAmount']),
+    handleSelectQuestionAmount() {
+      //
+      this.setSelectedQuestionAmount(this.amount);
+    },
+    handleSelectCategory() {
+      //
+      this.setSelectedCategory(this.selected);
+    }
   }
 }
 </script>
 
 <style>
+
+.form-select {
+  text-align: center !important;
+}
 
 </style>
