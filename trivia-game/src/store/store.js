@@ -52,13 +52,9 @@ export default new Vuex.Store({
         async loginNewUser({state, commit}) {
             try{
                 const registerDetails = {
-                    
-                        username: state.username,
-                        highScore: state.score
-
-                    
+                    username: state.username,
+                    highScore: state.score
                 }
-
                 const user = await LoginAPI.register(registerDetails)
                 if (user) {
                     commit("setProfile", user)

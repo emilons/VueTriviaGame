@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <h1>Welcome to trivia night!</h1>
     <label class="form-label">Username</label>
     <input id="usernameInput" @input="onUserNameChange" type="text"/>
     <MenuOption/>
@@ -17,7 +18,7 @@ export default {
     MenuOption
   },
     computed: {
-    ...mapState(['error','difficulty','selectedCategory', 'selectedQuestionAmount']),
+    ...mapState(['username','error','difficulty','selectedCategory', 'selectedQuestionAmount']),
   },
   methods: {
     ...mapActions(["loginNewUser"]),
@@ -28,6 +29,10 @@ export default {
     handleStartGame() {
       // if username in loginAPI stuff
       //route to question pagev
+      console.log(this.username);
+      console.log(this.difficulty);
+      console.log(this.selectedCategory.name);
+      console.log(this.selectedQuestionAmount);
       this.loginNewUser()
       if (!this.error){
         this.$router.push("/questions")

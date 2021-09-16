@@ -1,8 +1,6 @@
 <template>
   <div id="app">
     <router-view/>
-    <h1>Welcome to trivia night!</h1>
-    <HomePage/>
   </div>
 </template>
 
