@@ -1,40 +1,42 @@
 <template>
   <div class="container">
     <label class="form-label">Username</label>
-    <input type="text" id="usernameInput">
+    <input id="usernameInput" @input="onUserNameChange" type="text"/>
     <MenuOption/>
     <button class="btn btn-primary" id="startButton" @click="handleStartGame">Start Game</button>
   </div>
 </template>
 
 <script>
-import {mapState, mapMutations} from 'vuex';
 import MenuOption from './MenuOption.vue';
+import{mapActions, mapMutations, mapState} from 'vuex'
 
 export default {
   name: 'HomePage',
-  components: {
+    components: {
     MenuOption
   },
     computed: {
-    ...mapState(['difficulty','selectedCategory', 'selectedQuestionAmount']),
+    ...mapState(['error','difficulty','selectedCategory', 'selectedQuestionAmount']),
   },
   methods: {
-    ...mapMutations(['setUsername']),
+    ...mapActions(["loginNewUser"]),
+    ...mapMutations(['setUsername', 'setHighscore']),
+    onUserNameChange(event){
+      this.setUsername(event.target.value.trim())
+    },
     handleStartGame() {
-      let username = document.getElementById("usernameInput").value;
       // if username in loginAPI stuff
-      // set game states
-      this.setUsername(username);
-
-      console.log(username);
-      console.log(this.difficulty);
-      console.log(this.selectedCategory.name);
-      console.log(this.selectedQuestionAmount);
-      //route to question page
+      //route to question pagev
+      this.loginNewUser()
+      if (!this.error){
+        this.$router.push("/questions")
+      }
     }
-  }
+  },
 }
+
+
 
 </script>
 

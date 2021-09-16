@@ -5,6 +5,11 @@ Vue.use(VueRouter)
 
 const routes = [
     {
+        path: "/",
+        name: "Home",
+        component: () => import("../components/Home/HomePage.vue")
+    },
+    {
         path: "/home",
         name: "Home",
         component: () => import("../components/Home/HomePage.vue")
