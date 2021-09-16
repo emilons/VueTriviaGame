@@ -14,7 +14,7 @@ export default new Vuex.Store({
         categories: [],
         difficulty: "easy",
         selectedCategory: {id: 9, name: "General Knowledge"},
-        selectedQuestionAmount: 10
+        selectedQuestionAmount: 10,
     },
     mutations: {
         setProfile: (state, payload) =>{
@@ -56,7 +56,6 @@ export default new Vuex.Store({
                     highScore: state.score
                 }
                 const user = await LoginAPI.register(registerDetails);
-                console.log(user)
                 if (user) {
                     commit("setProfile", user)
                 }

@@ -14,10 +14,10 @@ import{mapActions, mapMutations, mapState} from 'vuex'
 
 export default {
   name: 'HomePage',
-    components: {
+  components: {
     MenuOption
   },
-    computed: {
+  computed: {
     ...mapState(['username','error','difficulty','selectedCategory', 'selectedQuestionAmount']),
   },
   methods: {
