@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <h1>Lets play a game</h1>
-        <Question :question="game[0]" @answer-clicked="handleNextQuestion"/>
+        <Question :question="game[currentQuestionIndex]" @answer-clicked="handleNextQuestion"/>
     </div>
 </template>
 
@@ -10,13 +10,13 @@ import {mapMutations, mapState} from 'vuex';
 import {getTriviaGame} from '@/api/triviaAPI.js'
 import Question from './Question.vue'
 
-// add emit from question (child) which props down the next question and add that to handleChangeQuestion
-
 export default {
     name: 'GamePage',
     data() {
         return {
-            game : []
+            currentQuestionIndex : 0,
+            game : [],
+            playerChoices : []
         }
     },
     components: {
@@ -38,7 +38,12 @@ export default {
     methods: {
         ...mapMutations(['setError']),
         handleNextQuestion(answer) {
-            console.log(answer)
+            this.playerChoices.push(answer);
+            console.log(`Your answer: ${answer}, correct answer: ${this.game[this.currentQuestionIndex].correct_answer}`)
+            if (this.currentQuestionIndex < this.game.length) this.currentQuestionIndex++;
+            else {
+                //route to result screen
+            }
         }
     }
 }
