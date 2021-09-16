@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import {getTriviaCategories} from '@/api/triviaAPI.js';
-import LoginAPI from '@/api/LoginAPI.js';
+import {LoginAPI} from '@/api/LoginAPI.js';
 
 Vue.use(Vuex);
 
@@ -55,7 +55,8 @@ export default new Vuex.Store({
                     username: state.username,
                     highScore: state.score
                 }
-                const user = await LoginAPI.register(registerDetails)
+                const user = await LoginAPI.register(registerDetails);
+                console.log(user)
                 if (user) {
                     commit("setProfile", user)
                 }

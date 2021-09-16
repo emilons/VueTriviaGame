@@ -17,9 +17,9 @@ export const LoginAPI = {
     }, */
 
     register(user){
-
+        console.log(user)
         const apiURL = 'https://vue-questionaire.herokuapp.com' //SET FROM .ENV INSTEAD
-        const apiKey = 'EdvardsAPIKEY'
+        const apiKey = 'EdvardsAPIKEY' //SET FROM .ENV INSTEAD
 
         fetch(`${apiURL}/trivia`, {
                 method: 'POST',
@@ -27,16 +27,14 @@ export const LoginAPI = {
                     'X-API-Key': apiKey,
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(user) 
+                body: JSON.stringify(user)
                 
-            })
-            .then(response => {
+            }).then(response => {
             if (!response.ok) {
                 throw new Error('Could not create new user')
             }
-            return response.json()
             })
-
+        return user;
     }, 
     //  updateHighScore(user){
     //     const apiURL = 'https://vue-questionaire.herokuapp.com/'
