@@ -39,6 +39,7 @@ export default {
         ...mapMutations(['setError']),
         handleNextQuestion(answer) {
             this.playerChoices.push(answer);
+            // if answer correct add to score
             console.log(`Your answer: ${answer}, correct answer: ${this.game[this.currentQuestionIndex].correct_answer}`)
             if (this.currentQuestionIndex < this.game.length-1) this.currentQuestionIndex++;
             else {

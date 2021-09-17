@@ -9,7 +9,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         username: "w",
-        score: 20,
+        score: 0,
         profile: {},
         error: "",
         categories: [],
