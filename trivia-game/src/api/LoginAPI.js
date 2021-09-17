@@ -58,14 +58,6 @@ export const LoginAPI = {
 
     },
 
-    // GetUserByName(username){
-    //     const apiURL = 'https://vue-questionaire.herokuapp.com'
-    //     //const username = 'mega-mind'
-
-    //     fetch(`${apiURL}/trivia?username=${username}`)
-    //         .then(response => response.json())
-    //     return apiURL;
-            
-    // } 
+    
     
 }
