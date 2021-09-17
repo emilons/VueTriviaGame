@@ -13,7 +13,7 @@ export const getTriviaCategories = async () => {
 
 export const getTriviaGame = async (amount, category, difficulty) => {
     try {
-        const gameUrl = 'https://opentdb.com/api.php?' + `amount=${amount}` + `&category=${category.id}` + `&difficulty=${difficulty}`;
+        const gameUrl = 'https://opentdb.com/api.php?type=multiple' + `&amount=${amount}` + `&category=${category.id}` + `&difficulty=${difficulty}`;
         const {results} = await fetch(gameUrl)
             .then(r => r.json())
         return [null, results];

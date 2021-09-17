@@ -1,30 +1,57 @@
 <template>
-    <div>
-        <h1>Question Page</h1>
-        <button class="btn btn-primary" id="updateButton" @click="handleUpdate">update</button>
-
+    <div class="container">
+        <h1>Lets play a game</h1>
+        <Question :question="game[currentQuestionIndex]" @answer-clicked="handleNextQuestion"/>
     </div>
 </template>
 
 <script>
-import{mapActions, mapMutations, mapState} from 'vuex'
+import {mapMutations, mapState} from 'vuex';
+import {getTriviaGame} from '@/api/triviaAPI.js'
+import Question from './Question.vue'
 
 export default {
-    name: 'QuestionPage',
-        components: {
-    },
-        computed: {
-    ...mapState(['score']),
-  },
-    methods: {
-        ...mapActions(["updateScore"]),
-        ...mapMutations(['setHighscore']),
-        handleUpdate(){
-            console.log(this.score)
-            this.updateScore()
+    name: 'GamePage',
+    data() {
+        return {
+            currentQuestionIndex : 0,
+            game : [],
+            playerChoices : []
         }
     },
-    
-
+    components: {
+        Question
+    },
+    async created() {
+        const [error, game] = await getTriviaGame(this.selectedQuestionAmount, this.selectedCategory, this.difficulty);
+        this.game = game;
+        this.setError(error);
+        game.forEach(element => {
+            element.answers = [element.correct_answer, ...element.incorrect_answers].sort((a, b) => {
+                    return a.localeCompare(b)
+                })
+        });
+    },
+    computed: {
+        ...mapState(['difficulty', 'selectedCategory', 'selectedQuestionAmount','error']),
+    },
+    methods: {
+        ...mapMutations(['setError']),
+        handleNextQuestion(answer) {
+            this.playerChoices.push(answer);
+            console.log(`Your answer: ${answer}, correct answer: ${this.game[this.currentQuestionIndex].correct_answer}`)
+            if (this.currentQuestionIndex < this.game.length-1) this.currentQuestionIndex++;
+            else {
+                console.log("done");
+                console.log(this.playerChoices) // move playerchoices array to store (vuex) and use setPlayerChoices here
+                this.$router.push("/results");
+            }
+        }
+    }
 }
+
 </script>
+
+<style>
+
+</style>
