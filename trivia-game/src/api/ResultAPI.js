@@ -1,7 +1,8 @@
 export const ResultAPI = {
 
+    //ASYNC AWAIT
     GetAllUsers(){
-        const apiURL = 'https://vue-questionaire.herokuapp.com'
+      const apiURL = 'https://vue-questionaire.herokuapp.com'
         return fetch(`${apiURL}/trivia`)
         .then(response => response.json())
     },

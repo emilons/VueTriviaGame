@@ -10,6 +10,7 @@
 
 <script>
 import MenuOption from './MenuOption.vue';
+//import {LoginAPI} from '@/api/LoginAPI.js';
 import{mapActions, mapMutations, mapState} from 'vuex'
 
 export default {

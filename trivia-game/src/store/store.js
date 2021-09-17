@@ -104,15 +104,15 @@ export default new Vuex.Store({
         },
         async updateScore({state, commit}) {
             try{
-                const newHighScore = {
-                    highScore: state.score
-                }
-                const theScore = await LoginAPI.updateHighScore(newHighScore);
-                if(theScore){
-                    commit("setHighscore", theScore)
+                await LoginAPI.updateHighScore(55, 5)
+                
+                if (state.profile.highScore < state.score) {
+                    await LoginAPI.updateHighScore(state.score, state.profile.id);
+                    this.setHighScore(this.score);
+                    
                 }
                 else{
-                    commit("setError", "Cant update Score")
+                    await LoginAPI.updateHighScore(state.profile.highScore, state.profile.id)
                 }
             }
             catch(e){

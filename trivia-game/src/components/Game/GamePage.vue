@@ -69,15 +69,11 @@ export default {
         },
         handleShowResults() {
             if (this.userExists == true) {
-                // if profile.highscore <= state.score
-                if (this.profile.highScore < this.score) {
-                    this.setHighScore(this.score);
-                }
-                //this.updateScore();
+                this.updateScore();
                 console.log(`updated score to ${this.score}`)
             }
             else {
-                //this.loginNewUser();
+                this.loginNewUser();
                 console.log(`added user with score ${this.score}`)
             }
             this.$router.push("/results");

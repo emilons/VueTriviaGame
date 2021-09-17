@@ -28,28 +28,24 @@ export const LoginAPI = {
             })
         return user;
     }, 
-     updateHighScore(score){
+     updateHighScore(score, userId){
         const apiURL = 'https://vue-questionaire.herokuapp.com'
         const apiKey = 'EdvardsAPIKEY'
-        const userId = 1; // Update user with id
-
         fetch(`${apiURL}/trivia/${userId}`, {
                 method: 'PATCH', // NB: Set method to PATCH
                 headers: {
                     'X-API-Key': apiKey,
                 'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(score)
+                body: JSON.stringify({
+                    "highScore": score
+                })
             })
             .then(response => {
             if (!response.ok) {
                 throw new Error('Could not update high score')
             }
-            })
-            return score;
-
+        })
     },
-
-    
     
 }
