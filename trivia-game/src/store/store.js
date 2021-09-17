@@ -12,6 +12,9 @@ export default new Vuex.Store({
         username: "",
         score: 0,
         profile: [],
+        playerChoices: [],
+        correctAnswers: [],
+        questions: [],
         error: "",
         categories: [],
         difficulty: "easy",
@@ -24,6 +27,9 @@ export default new Vuex.Store({
     mutations: {
         setProfile: (state, payload) =>{
             state.profile = payload
+        },
+        setHighScore: (state, payload) => {
+            state.profile.highScore = payload;
         },
         setUsername: (state, payload) =>{
             state.username = payload
@@ -55,7 +61,15 @@ export default new Vuex.Store({
         setUserExists: (state, payload) =>{
             state.userExists = payload
         },
-
+        addToPlayerChoices: (state, payload) => {
+            state.playerChoices.push(payload)
+        },
+        addToCorrectAnswers: (state, payload) => {
+            state.correctAnswers.push(payload)
+        },
+        addToQuestions: (state, payload) => {
+            state.questions.push(payload)
+        },
     },
     getters:{
         searchedResults: state => {

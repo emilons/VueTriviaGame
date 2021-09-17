@@ -1,13 +1,17 @@
 <template>
     <div class="container">
-        <h1>Lets play a game</h1>
-        <Question :question="game[currentQuestionIndex]" @answer-clicked="handleNextQuestion"/>
-        <button class="btn btn-primary" id="showResultButton" @click="handleShowResults">Show results</button>
+        <h1>{{title}}</h1>
+        <Question id="question" :question="game[currentQuestionIndex]" @answer-clicked="handleNextQuestion"/>
+        <div id="showResult">
+            <p>Thanks for playing the game! To see your score click the button below!</p>
+            <button class="btn btn-primary"  @click="handleShowResults">Show results</button>
+        </div>
+        
     </div>
 </template>
 
 <script>
-import {mapMutations, mapState} from 'vuex';
+import {mapMutations, mapState, mapActions} from 'vuex';
 import {getTriviaGame} from '@/api/triviaAPI.js'
 import Question from './Question.vue'
 
@@ -17,7 +21,6 @@ export default {
         return {
             currentQuestionIndex : 0,
             game : [],
-            playerChoices : []
         }
     },
     components: {
@@ -28,21 +31,29 @@ export default {
         this.game = game;
         this.setError(error);
         game.forEach(element => {
+            this.addToQuestions(element.question);
+            this.addToCorrectAnswers(element.correct_answer);
             element.answers = [element.correct_answer, ...element.incorrect_answers].sort((a, b) => {
                     return a.localeCompare(b)
                 })
         });
-        let buttonElement = document.getElementById("showResultButton");
-        buttonElement.style.display="none";
+        let showResultElement = document.getElementById("showResult");
+        showResultElement.style.display="none";
     },
     computed: {
-        ...mapState(['difficulty', 'selectedCategory', 'selectedQuestionAmount','error', 'profile', 'userExists', 'score']),
+        ...mapState(['difficulty', 'selectedCategory',
+            'selectedQuestionAmount','error', 'profile', 
+            'userExists', 'score', 'playerChoices',
+            'correctAnswers', 'questions']),
+        title() {
+            return this.selectedCategory?.name
+        }
     },
     methods: {
-        ...mapMutations(['setError', 'setScore', 'updateScore', 'loginNewUser']),
+        ...mapMutations(['setError', 'setScore', 'setHighScore', 'addToPlayerChoices', 'addToCorrectAnswers', 'addToQuestions']),
+        ...mapActions(['updateScore', 'loginNewUser']),
         handleNextQuestion(answer) {
-            this.playerChoices.push(answer);
-
+            this.addToPlayerChoices(answer);
             if (answer === this.game[this.currentQuestionIndex].correct_answer) {
                 this.setScore(this.score+10);
             }
@@ -50,26 +61,26 @@ export default {
             console.log(this.score)
             if (this.currentQuestionIndex < this.game.length-1) this.currentQuestionIndex++;
             else {
-                let buttonElement = document.getElementById("showResultButton");
-                buttonElement.style.display = "block";
-                // console.log("SHOWING RESULTS");
-                // console.log(this.playerChoices) // move playerchoices array to store (vuex) and use setPlayerChoices here
-                // //this.$router.push("/results");
+                let questionElement = document.getElementById("question");
+                questionElement.style.display="none";
+                let showResultElement = document.getElementById("showResult");
+                showResultElement.style.display = "block";
             }
         },
         handleShowResults() {
-            // login things
-            // update state.score
             if (this.userExists == true) {
                 // if profile.highscore <= state.score
-                //this.updateScore();¨
+                if (this.profile.highScore < this.score) {
+                    this.setHighScore(this.score);
+                }
+                //this.updateScore();
                 console.log(`updated score to ${this.score}`)
             }
             else {
                 //this.loginNewUser();
                 console.log(`added user with score ${this.score}`)
             }
-            //this.$router.push("/results");
+            this.$router.push("/results");
         }
     }
 }
