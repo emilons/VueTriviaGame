@@ -4,13 +4,14 @@ import {getTriviaCategories} from '@/api/triviaAPI.js';
 import {LoginAPI} from '@/api/LoginAPI.js';
 import {ResultAPI} from '@/api/ResultAPI.js';
 
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        username: "w",
+        username: "",
         score: 0,
-        profile: {},
+        profile: [],
         error: "",
         categories: [],
         difficulty: "easy",
@@ -18,8 +19,10 @@ export default new Vuex.Store({
         selectedQuestionAmount: 10,
         results: [],
         searchText: "",
+        userExcists: false,
     },
     mutations: {
+
         setProfile: (state, payload) =>{
             state.profile = payload
         },
@@ -51,6 +54,9 @@ export default new Vuex.Store({
         setSearchText: (state, payload) => {
             state.searchText = payload
         },
+        setUserExcists: (state, payload) =>{
+            state.userExcists = payload
+        },
 
     },
     getters:{
@@ -74,7 +80,7 @@ export default new Vuex.Store({
                 }
                 const user = await LoginAPI.register(registerDetails);
                 if (user) {
-                    commit("setProfile", user)
+                   commit("setProfile", user)
                 }
                 else{
                     commit("setError", "The username is not accepted")
@@ -110,6 +116,22 @@ export default new Vuex.Store({
                 const results = await ResultAPI.GetAllUsers()
                 commit("setResults", results)
 
+            }
+            catch(e){
+                commit("setError", e.message)
+
+            }
+        },
+        async fetchSpecificUser({commit, state}){
+            
+
+            try{
+                const [profile] = await LoginAPI.getSpecificUser(state.username)
+
+                if(profile !== undefined){
+                    commit("setProfile", profile)
+                    commit("setUserExcists", true)
+                }
             }
             catch(e){
                 commit("setError", e.message)

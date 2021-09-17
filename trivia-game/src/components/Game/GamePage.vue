@@ -2,6 +2,7 @@
     <div class="container">
         <h1>Lets play a game</h1>
         <Question :question="game[currentQuestionIndex]" @answer-clicked="handleNextQuestion"/>
+        <button class="btn btn-primary" id="ResultButton" @click="handleResult">Restart</button>
     </div>
 </template>
 
@@ -43,6 +44,7 @@ export default {
             console.log(`Your answer: ${answer}, correct answer: ${this.game[this.currentQuestionIndex].correct_answer}`)
             if (this.currentQuestionIndex < this.game.length-1) this.currentQuestionIndex++;
             else {
+
                 console.log("done");
                 console.log(this.playerChoices) // move playerchoices array to store (vuex) and use setPlayerChoices here
                 this.$router.push("/results");

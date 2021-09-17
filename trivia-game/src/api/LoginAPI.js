@@ -3,24 +3,16 @@
 export const LoginAPI = {
 
 
-     /* getSpecificUser(){
-        const apiURL = 'https://git.heroku.com/vue-questionaire.git'
-        const username = 'mega-mind'
-
-        fetch(`${apiURL}/trivia?username=${username}`)
+     
+    getSpecificUser(username){
+        const apiURL = 'https://vue-questionaire.herokuapp.com'
+        return fetch(`${apiURL}/trivia?username=${username}`)
         .then(response => response.json())
-        .then(results => {
-            // results will be an array of users that match the username of mega-mind.
-        })
-        .catch(error => {
-        })
-    }, */
+    },
 
     register(user){
-        console.log(user)
         const apiURL = 'https://vue-questionaire.herokuapp.com' //SET FROM .ENV INSTEAD
         const apiKey = 'EdvardsAPIKEY' //SET FROM .ENV INSTEAD
-
         fetch(`${apiURL}/trivia`, {
                 method: 'POST',
                 headers: {

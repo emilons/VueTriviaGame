@@ -17,27 +17,29 @@ export default {
   components: {
     MenuOption
   },
-    computed: {
-    ...mapState(['username', 'error', 'difficulty', 'selectedCategory', 'selectedQuestionAmount']),
+
+  computed: {
+    ...mapState(['username', 'error', 'difficulty', 'selectedCategory', 'selectedQuestionAmount', 'profile', "userExcists"]),
   },
   methods: {
-    ...mapActions(["loginNewUser"]),
+    ...mapActions(['loginNewUser', 'fetchSpecificUser']),
     ...mapMutations(['setUsername', 'setHighscore']),
     onUserNameChange(event){
       this.setUsername(event.target.value.trim())
+      this.fetchSpecificUser(this.username)
     },
+    
     handleStartGame() {
       // if username in loginAPI stuff
       //route to question pagev
-      console.log(this.username);
-      console.log(this.difficulty);
-      console.log(this.selectedCategory.name);
-      console.log(this.selectedQuestionAmount);
-      this.loginNewUser()
-      if (!this.error){
-        this.$router.push("/game")
+      if (this.userExcists === false) {
+        this.loginNewUser()
+      } 
+      if (!this.error) {
+        this.$router.push('/game')
       }
-    }
+      
+    },
   },
 }
 

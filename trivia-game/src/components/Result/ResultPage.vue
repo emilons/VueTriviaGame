@@ -6,6 +6,7 @@
         <ul v-for="result in searchedResults" :key="result.id">
             <li>{{result.username}} {{result.score}} {{result.highScore}} </li>
         </ul>
+        <button class="btn btn-primary" id="BackButton" @click="handleRestart">Restart</button>
     </div>
 </template>
 
@@ -25,7 +26,13 @@ export default {
             ...mapMutations(['setSearchText']),
             onSearchChange(event) {
                 this.setSearchText(event.target.value.trim())
-            } 
+            },
+            handleRestart() {
+                if (!this.error) {
+                    this.$router.push('/')
+                }
+                
+            }, 
         },
     created(){
         this.getAllUsers()

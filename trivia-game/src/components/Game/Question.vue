@@ -6,8 +6,6 @@
                 <button class="btn btn-primary w-100" @click="onAnswerClick">{{answer}}</button>
             </div>
         </div>
-        
-        
     </div>
 </template>
 
