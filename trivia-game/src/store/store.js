@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import {getTriviaCategories} from '@/api/triviaAPI.js';
 import {LoginAPI} from '@/api/LoginAPI.js';
+import {ResultAPI} from '@/api/ResultAPI.js';
 
 Vue.use(Vuex);
 
@@ -15,6 +16,8 @@ export default new Vuex.Store({
         difficulty: "easy",
         selectedCategory: {id: 9, name: "General Knowledge"},
         selectedQuestionAmount: 10,
+        results: [],
+        searchText: "",
     },
     mutations: {
         setProfile: (state, payload) =>{
@@ -42,10 +45,20 @@ export default new Vuex.Store({
         setSelectedQuestionAmount: (state, payload) => {
             state.selectedQuestionAmount = payload
         },
-        setListOfNames: (state, payload) => {
-            state.listOfNames = payload
-        }
+        setResults: (state, payload) => {
+            state.results = payload
+        },
+        setSearchText: (state, payload) => {
+            state.searchText = payload
+        },
 
+    },
+    getters:{
+        searchedResults: state => {
+            if(state.searchText !== "")
+                return [...state.results.filter(x => x.username.includes(state.searchText))];
+            return state.results
+        }
     },
     actions: {
         async fetchCategories({commit}) {
@@ -92,25 +105,18 @@ export default new Vuex.Store({
 
             }
         },
-        // async GetUserByName({state, commit}) {
-        //     try{
-        //         const displayNameID = {
-        //             username: state.username,
-        //             score: state.score
-        //         }
-        //         const thedisp = await LoginAPI.GetUserByName(displayNameID);
-        //         if(thedisp){
-        //             commit("setListOfNames", thedisp)
-        //         }
-        //         else{
-        //             commit("setError", "Cant show the user")
-        //         }
-        //     }
-        //     catch(e){
-        //         commit("setError", e.message)
+        async getAllUsers({commit}){
+            try{
+                const results = await ResultAPI.GetAllUsers()
+                commit("setResults", results)
 
-        //     }
-        // }
+            }
+            catch(e){
+                commit("setError", e.message)
+
+            }
+        },
+        
     }
 
 });
