@@ -26,19 +26,13 @@ export default {
     ...mapMutations(['setUsername', 'setHighscore']),
     onUserNameChange(event){
       this.setUsername(event.target.value.trim())
-      this.fetchSpecificUser(this.username)
     },
     
     handleStartGame() {
-      // if username in loginAPI stuff
-      //route to question pagev
-      if (this.userExcists === false) {
-        this.loginNewUser()
-      } 
+      this.fetchSpecificUser(this.username)
       if (!this.error) {
         this.$router.push('/game')
       }
-      
     },
   },
 }

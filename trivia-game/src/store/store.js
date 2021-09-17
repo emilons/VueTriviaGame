@@ -19,17 +19,16 @@ export default new Vuex.Store({
         selectedQuestionAmount: 10,
         results: [],
         searchText: "",
-        userExcists: false,
+        userExists: false,
     },
     mutations: {
-
         setProfile: (state, payload) =>{
             state.profile = payload
         },
         setUsername: (state, payload) =>{
             state.username = payload
         },
-        setHighscore: (state, payload) =>{
+        setScore: (state, payload) =>{
             state.score = payload
         },
         setError: (state, payload) =>{
@@ -40,8 +39,7 @@ export default new Vuex.Store({
         },
         setDifficulty: (state, payload) => {
             state.difficulty = payload
-        }
-        ,
+        },
         setSelectedCategory: (state, payload) => {
             state.selectedCategory = payload
         },
@@ -54,8 +52,8 @@ export default new Vuex.Store({
         setSearchText: (state, payload) => {
             state.searchText = payload
         },
-        setUserExcists: (state, payload) =>{
-            state.userExcists = payload
+        setUserExists: (state, payload) =>{
+            state.userExists = payload
         },
 
     },
@@ -90,11 +88,8 @@ export default new Vuex.Store({
                 commit("setError", e.message)
              }
         },
-
         async updateScore({state, commit}) {
-
             try{
-
                 const newHighScore = {
                     highScore: state.score
                 }
@@ -119,18 +114,15 @@ export default new Vuex.Store({
             }
             catch(e){
                 commit("setError", e.message)
-
             }
         },
-        async fetchSpecificUser({commit, state}){
-            
-
+        async fetchSpecificUser({commit, state}) {
             try{
                 const [profile] = await LoginAPI.getSpecificUser(state.username)
 
                 if(profile !== undefined){
                     commit("setProfile", profile)
-                    commit("setUserExcists", true)
+                    commit("setUserExists", true)
                 }
             }
             catch(e){
