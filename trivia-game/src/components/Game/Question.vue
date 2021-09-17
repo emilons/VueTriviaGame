@@ -1,9 +1,12 @@
 <template>
     <div>
         <p>{{questionText}}</p>
-        <div v-for="(answer, index) in answers" :key="index">
-            <button class="btn btn-primary" @click="onAnswerClick">{{answer}}</button>
+        <div class="row">
+            <div class="col-sm-3 d-flex justify-content-center" v-for="(answer, index) in answers" :key="index">
+                <button class="btn btn-primary w-100" @click="onAnswerClick">{{answer}}</button>
+            </div>
         </div>
+        
         
     </div>
 </template>

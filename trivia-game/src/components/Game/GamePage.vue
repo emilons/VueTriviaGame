@@ -40,9 +40,11 @@ export default {
         handleNextQuestion(answer) {
             this.playerChoices.push(answer);
             console.log(`Your answer: ${answer}, correct answer: ${this.game[this.currentQuestionIndex].correct_answer}`)
-            if (this.currentQuestionIndex < this.game.length) this.currentQuestionIndex++;
+            if (this.currentQuestionIndex < this.game.length-1) this.currentQuestionIndex++;
             else {
-                //route to result screen
+                console.log("done");
+                console.log(this.playerChoices) // move playerchoices array to store (vuex) and use setPlayerChoices here
+                this.$router.push("/results");
             }
         }
     }
