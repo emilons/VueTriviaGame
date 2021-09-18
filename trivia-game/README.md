@@ -4,6 +4,9 @@ This is the submission for the second assignment in the frontend module of the N
 
 The goal of the assignment is to build a single page trivia game using Vue.js
 
+For this assignment we used the following databases:
+- https://opentdb.com/api_config.php database for the trivia game.
+- https://vue-questionaire.herokuapp.com/trivia for the user information
 
 ## Project setup
 ```
