@@ -1,6 +1,6 @@
 export const ResultAPI = {
 
-    //ASYNC AWAIT
+    //Get all users in the database
     async GetAllUsers(){
 
       const apiURL = 'https://vue-questionaire.herokuapp.com'
@@ -9,13 +9,13 @@ export const ResultAPI = {
         .then(response => response.json())
     },
 
-    GetUserByName(username){
+    //Get specific user based on the name
+    async GetUserByName(username){
 
         const apiURL = 'https://vue-questionaire.herokuapp.com'
 
-        fetch(`${apiURL}/trivia?username=${username}`)
+        await fetch(`${apiURL}/trivia?username=${username}`)
             .then(response => response.json())
         return apiURL;
-            
     } 
 }

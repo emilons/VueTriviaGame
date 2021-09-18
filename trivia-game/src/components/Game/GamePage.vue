@@ -67,6 +67,8 @@ export default {
                 showResultElement.style.display = "block";
             }
         },
+        //If the user exists then this updates the score.
+        //If its a new user this register the user.
         handleShowResults() {
             if (this.userExists == true) {
                 this.updateScore();

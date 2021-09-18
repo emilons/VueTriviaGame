@@ -29,6 +29,7 @@ export default {
       this.setUsername(event.target.value.trim())
     },
     
+    //Fetches this specific user based on the username input and routes to the game page.
     handleStartGame() {
       this.fetchSpecificUser(this.username)
       if (!this.error) {

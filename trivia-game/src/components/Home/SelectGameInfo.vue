@@ -45,11 +45,11 @@ export default {
     ...mapActions(['fetchCategories']),
     ...mapMutations(['setSelectedCategory', 'setSelectedQuestionAmount']),
     handleSelectQuestionAmount() {
-      //
+      //Sets the amount of questions the user wants on the homepage
       this.setSelectedQuestionAmount(this.amount);
     },
     handleSelectCategory() {
-      //
+      //Sets which category the user wants on the homepage
       this.setSelectedCategory(this.selected);
     }
   }
