@@ -1,9 +1,5 @@
-//import { get } from "core-js/core/dict"
-
 export const LoginAPI = {
 
-
-     
     getSpecificUser(username){
         const apiURL = 'https://vue-questionaire.herokuapp.com'
         return fetch(`${apiURL}/trivia?username=${username}`)
@@ -27,7 +23,8 @@ export const LoginAPI = {
             }
             })
         return user;
-    }, 
+    },
+
      updateHighScore(score, userId){
         const apiURL = 'https://vue-questionaire.herokuapp.com'
         const apiKey = 'EdvardsAPIKEY'
@@ -47,5 +44,4 @@ export const LoginAPI = {
             }
         })
     },
-    
 }

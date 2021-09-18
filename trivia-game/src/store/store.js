@@ -9,12 +9,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        profile: [],
         username: "",
         score: 0,
-        profile: [],
-        playerChoices: [],
-        correctAnswers: [],
-        questions: [],
         error: "",
         categories: [],
         difficulty: "easy",
@@ -23,6 +20,9 @@ export default new Vuex.Store({
         results: [],
         searchText: "",
         userExists: false,
+        playerChoices: [],
+        correctAnswers: [],
+        questions: [],
     },
     mutations: {
         setProfile: (state, payload) =>{
@@ -84,6 +84,7 @@ export default new Vuex.Store({
             commit('setError', error);
             commit('setCategories', categories);
         },
+
         async loginNewUser({state, commit}) {
             try{
                 const registerDetails = {
@@ -102,6 +103,7 @@ export default new Vuex.Store({
                 commit("setError", e.message)
              }
         },
+
         async updateScore({state, commit}) {
             try{
                 await LoginAPI.updateHighScore(55, 5)
@@ -109,7 +111,6 @@ export default new Vuex.Store({
                 if (state.profile.highScore < state.score) {
                     await LoginAPI.updateHighScore(state.score, state.profile.id);
                     this.setHighScore(this.score);
-                    
                 }
                 else{
                     await LoginAPI.updateHighScore(state.profile.highScore, state.profile.id)
@@ -120,16 +121,17 @@ export default new Vuex.Store({
 
             }
         },
+
         async getAllUsers({commit}){
             try{
                 const results = await ResultAPI.GetAllUsers()
                 commit("setResults", results)
-
             }
             catch(e){
                 commit("setError", e.message)
             }
         },
+
         async fetchSpecificUser({commit, state}) {
             try{
                 const [profile] = await LoginAPI.getSpecificUser(state.username)
@@ -141,10 +143,7 @@ export default new Vuex.Store({
             }
             catch(e){
                 commit("setError", e.message)
-
             }
         },
-        
     }
-
 });
