@@ -58,8 +58,6 @@ export default {
 
 <style>
 
-.form-select {
-  text-align: center !important;
-}
+
 
 </style>

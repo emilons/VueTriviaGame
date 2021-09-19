@@ -31,10 +31,6 @@ export default {
             let buttonElement = event.target
             let selectedAnswer = buttonElement.innerText;
             this.$emit('answer-clicked', selectedAnswer)
-
-
-            // check if correct, and display if correct or not somehow
-            // updateAnswers
         }
     }
 }

@@ -5,9 +5,9 @@
         <question id="question" :question="game[currentQuestionIndex]" @answer-clicked="handleNextQuestion"/>
         <div id="showResult" class="mb-5">
             <p>Thanks for playing the game! To see your score click the button below!</p>
-            <button class="btn btn-primary mb-5"  @click="handleShowResults">Show results</button>
+            <button class="btn btn-primary mb-2"  @click="handleShowResults">Show results</button>
         </div>
-        
+        <br>
     </div>
 </template>
 
@@ -83,8 +83,5 @@ export default {
 </script>
 
 <style>
-#showResult {
-    height: 6rem;
-    font-size: 1.5rem;
-}
+
 </style>

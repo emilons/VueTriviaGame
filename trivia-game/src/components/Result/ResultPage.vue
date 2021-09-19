@@ -2,18 +2,26 @@
     <div class="container rounded">
         <br>
         <div id="playerResults">
-            <h1>Your score was: {{playerScore}}</h1>
+            <h1>Your score was: {{this.score}}</h1>
             <div v-for="(result, index) in this.correctAnswers" :key="index">
                 <result-question :index="index"/>
             </div>
         </div>
+        <h3 class="my-3">Results</h3>
         <label class="form-label m-3">Filter by username:</label>
         <input @input="onSearchChange" type="text" />
-        <h3 class="my-3">Results</h3>
         <ul v-for="result in searchedResults" :key="result.id">
             <li>Username: {{result.username}} --- Score: {{result.score}} {{result.highScore}} </li>
         </ul>
-        <button class="btn btn-primary mb-4" id="BackButton" @click="handleRestart">Restart</button>
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <button class="btn btn-primary mb-4" id="backButton" @click="handleBack">Back to menu</button>
+                <button class="btn btn-primary mb-4" id="restartButton" @click="handleRestart">Play again</button>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+        
     </div>
 </template>
 
@@ -25,24 +33,28 @@ export default {
     components: {
         ResultQuestion
     },
-    data() {
-        return {
-            playerScore : this.score
-        }
-    },
     computed: {
         ...mapState(['score', 'correctAnswers', 'playerChoices', 'questions']),
         ...mapGetters(["searchedResults"])
         },
     methods: {
-            ...mapActions(["getAllUsers"]),
-            ...mapMutations(['setSearchText']),
+            ...mapActions(['getAllUsers', 'fetchSpecificUser']),
+            ...mapMutations(['setSearchText', 'setQuestions', 'setCorrectAnswers', 'setPlayerChoices']),
             onSearchChange(event) {
                 this.setSearchText(event.target.value.trim())
             },
-            handleRestart() {
+            handleBack() {
                 if (!this.error) {
-                    this.$router.push('/')
+                    this.$router.push('/');
+                }
+            },
+            handleRestart() {
+                this.setQuestions([]);
+                this.setCorrectAnswers([]);
+                this.setPlayerChoices([]);
+                this.fetchSpecificUser(this.username);
+                if (!this.error) {
+                    this.$router.push('/game');
                 }
             }
         },

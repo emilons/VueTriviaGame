@@ -61,11 +61,20 @@ export default new Vuex.Store({
         setUserExists: (state, payload) =>{
             state.userExists = payload
         },
+        setPlayerChoices: (state, payload) => {
+            state.playerChoices = payload
+        },
         addToPlayerChoices: (state, payload) => {
             state.playerChoices.push(payload)
         },
+        setCorrectAnswers: (state, payload) => {
+            state.correctAnswers = payload
+        },
         addToCorrectAnswers: (state, payload) => {
             state.correctAnswers.push(payload)
+        },
+        setQuestions: (state, payload) => {
+            state.questions = payload
         },
         addToQuestions: (state, payload) => {
             state.questions.push(payload)

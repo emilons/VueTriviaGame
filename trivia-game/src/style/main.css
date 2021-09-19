@@ -1,11 +1,3 @@
-/* color patterns 
-EAEBED
-006989
-A3BAC3
-007090
-01A7C2
-*/
-
 body {
     background-color: #006989;
 }
@@ -26,6 +18,7 @@ span, label {
 
 .form-select {
     font-size: 1.1rem;
+    text-align: center !important;
 }
 
 
@@ -53,7 +46,32 @@ span, label {
     background-color: #A3BAC3;
 }
 
+#showResult {
+    height: 6rem;
+    font-size: 1.5rem;
+}
+
 .resultQuestions {
     padding: 2rem;
-    background-color: #A3BAC3;
+    background-color: rgb(204, 70, 70);
+}
+
+.resultCorrect {
+    background-color: rgb(76, 150, 76) !important;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#backButton {
+    margin-right: 1.5rem !important;
+}
+
+#restartButton {
+    margin-left: 1.5rem !important;
 }

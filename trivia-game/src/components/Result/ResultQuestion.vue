@@ -1,30 +1,32 @@
 <template>
-    <div class="rounded m-5 resultQuestions">
+    <div class="rounded m-5 resultQuestions" :class="{'resultCorrect': (choice === answer)}">
         <div>
             <h4>{{question}}</h4>
         </div>
         <div class="row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-8 row">
-                <div class="col-sm-3">
-                    <span>Your answer:</span>
+            <div class="col-sm-6 row">
+                <div class="col-sm-6">
+                    <span class="bold">Your answer:</span>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-6">
                     <span>{{choice}}</span>
                 </div>
-                <div class="col-sm-3">
-                    <span>Correct answer:</span>
+
+            </div>
+            <div class="col-sm-6 row">
+                <div class="col-sm-6">
+                    <span class="bold">Correct answer:</span>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-6">
                     <span>{{answer}}</span>
                 </div>
             </div>
-            <div class="col-sm-2"></div>
         </div>
     </div>
 </template>
 
 <script>
+//    <div class="rounded m-5 resultQuestions" :class="{'resultCorrect': (choice === answer)}>
 import {mapState} from 'vuex';
 export default {
     name: 'ResultQuestion',
