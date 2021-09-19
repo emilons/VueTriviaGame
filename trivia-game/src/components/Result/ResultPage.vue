@@ -1,7 +1,12 @@
 <template>
     <div class="container rounded">
         <br>
-        <h1>Your score was: {{playerScore}}</h1>
+        <div id="playerResults">
+            <h1>Your score was: {{playerScore}}</h1>
+            <div v-for="(result, index) in this.correctAnswers" :key="index">
+                <result-question :index="index"/>
+            </div>
+        </div>
         <label class="form-label m-3">Filter by username:</label>
         <input @input="onSearchChange" type="text" />
         <h3 class="my-3">Results</h3>
@@ -14,15 +19,19 @@
 
 <script>
 import{mapState, mapActions, mapMutations, mapGetters} from 'vuex'
+import ResultQuestion from './ResultQuestion.vue';
 export default {
     name: 'ResultPage',
+    components: {
+        ResultQuestion
+    },
     data() {
         return {
             playerScore : this.score
         }
     },
     computed: {
-        ...mapState(['score']),
+        ...mapState(['score', 'correctAnswers', 'playerChoices', 'questions']),
         ...mapGetters(["searchedResults"])
         },
     methods: {
@@ -35,7 +44,7 @@ export default {
                 if (!this.error) {
                     this.$router.push('/')
                 }
-            }, 
+            }
         },
     created(){
         this.getAllUsers();

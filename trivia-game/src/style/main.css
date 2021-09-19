@@ -52,3 +52,8 @@ span, label {
     font-size: 1.5rem;
     background-color: #A3BAC3;
 }
+
+.resultQuestions {
+    padding: 2rem;
+    background-color: #A3BAC3;
+}
