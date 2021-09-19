@@ -1,22 +1,28 @@
 <template>
-    <div>
-        <h1>Result Page</h1>
+    <div class="container rounded">
+        <br>
+        <h1>Your score was: {{playerScore}}</h1>
+        <label class="form-label m-3">Filter by username:</label>
         <input @input="onSearchChange" type="text" />
-        <h3>Results</h3>
+        <h3 class="my-3">Results</h3>
         <ul v-for="result in searchedResults" :key="result.id">
             <li>Username: {{result.username}} --- Score: {{result.score}} {{result.highScore}} </li>
         </ul>
-        <button class="btn btn-primary" id="BackButton" @click="handleRestart">Restart</button>
+        <button class="btn btn-primary mb-4" id="BackButton" @click="handleRestart">Restart</button>
     </div>
 </template>
 
 <script>
-import{mapActions, mapMutations, mapGetters} from 'vuex'
+import{mapState, mapActions, mapMutations, mapGetters} from 'vuex'
 export default {
     name: 'ResultPage',
-    components: {
-        },
+    data() {
+        return {
+            playerScore : this.score
+        }
+    },
     computed: {
+        ...mapState(['score']),
         ...mapGetters(["searchedResults"])
         },
     methods: {
@@ -32,7 +38,7 @@ export default {
             }, 
         },
     created(){
-        this.getAllUsers()
+        this.getAllUsers();
     }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
     <div>
-        <select-difficulty class="option"/>
-        <select-game-info class="option"/>
+        <select-difficulty class="option rounded"/>
+        <select-game-info class="option rounded"/>
     </div>
 </template>
 
@@ -21,8 +21,5 @@ export default {
 </script>
 
 <style>
-.option {
-    margin: 0.5rem;
-    background-color: grey;
-}
+
 </style>

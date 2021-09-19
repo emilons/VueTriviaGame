@@ -1,10 +1,14 @@
 <template>
     <div>
-        <p>{{questionText}}</p>
+        <p class="rounded" id="questionText">{{questionText}}</p>
         <div class="row">
-            <div class="col-sm-3 d-flex justify-content-center" v-for="(answer, index) in answers" :key="index">
-                <button class="btn btn-primary w-100" @click="onAnswerClick">{{answer}}</button>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="" v-for="(answer, index) in answers" :key="index">
+                    <button class="btn btn-primary w-100 mb-4" @click="onAnswerClick">{{answer}}</button>
+                </div>
             </div>
+            <div class="col-sm-4"></div>
         </div>
     </div>
 </template>

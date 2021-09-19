@@ -1,16 +1,18 @@
 <template>
-  <div class="container">
+  <div class="container rounded">
+    <br>
     <h1>Welcome to trivia night!</h1>
-    <label class="form-label">Username</label>
-    <input id="usernameInput" @input="onUserNameChange" type="text"/>
-    <MenuOption/>
-    <button class="btn btn-primary" id="startButton" @click="handleStartGame">Start Game</button>
+    <div class="rounded" id="username">
+      <label class="form-label m-3">Username:</label>
+      <input class="rounded" id="usernameInput" @input="onUserNameChange" type="text"/>
+    </div>
+    <menu-option/>
+    <button class="btn btn-primary mb-4" id="startButton" @click="handleStartGame">Start Game</button>
   </div>
 </template>
 
 <script>
 import MenuOption from './MenuOption.vue';
-//import {LoginAPI} from '@/api/LoginAPI.js';
 import{mapActions, mapMutations, mapState} from 'vuex'
 
 export default {

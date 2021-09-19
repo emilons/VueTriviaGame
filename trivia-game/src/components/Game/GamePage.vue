@@ -1,10 +1,11 @@
 <template>
-    <div class="container">
-        <h1>{{title}}</h1>
-        <Question id="question" :question="game[currentQuestionIndex]" @answer-clicked="handleNextQuestion"/>
-        <div id="showResult">
+    <div class="container rounded">
+        <br>
+        <h1 class="mb-4">Trivia: {{title}}</h1>
+        <question id="question" :question="game[currentQuestionIndex]" @answer-clicked="handleNextQuestion"/>
+        <div id="showResult" class="mb-5">
             <p>Thanks for playing the game! To see your score click the button below!</p>
-            <button class="btn btn-primary"  @click="handleShowResults">Show results</button>
+            <button class="btn btn-primary mb-5"  @click="handleShowResults">Show results</button>
         </div>
         
     </div>
@@ -57,8 +58,6 @@ export default {
             if (answer === this.game[this.currentQuestionIndex].correct_answer) {
                 this.setScore(this.score+10);
             }
-            console.log(`Your answer: ${answer}, correct answer: ${this.game[this.currentQuestionIndex].correct_answer}`)
-            console.log(this.score)
             if (this.currentQuestionIndex < this.game.length-1) this.currentQuestionIndex++;
             else {
                 let questionElement = document.getElementById("question");
@@ -72,11 +71,9 @@ export default {
         handleShowResults() {
             if (this.userExists == true) {
                 this.updateScore();
-                console.log(`updated score to ${this.score}`)
             }
             else {
                 this.loginNewUser();
-                console.log(`added user with score ${this.score}`)
             }
             this.$router.push("/results");
         }
@@ -86,5 +83,8 @@ export default {
 </script>
 
 <style>
-
+#showResult {
+    height: 6rem;
+    font-size: 1.5rem;
+}
 </style>
