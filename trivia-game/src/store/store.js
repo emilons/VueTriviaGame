@@ -82,6 +82,29 @@ export default new Vuex.Store({
         addToQuestions: (state, payload) => {
             state.questions.push(payload)
         },
+        setDefault: (state) => {
+            state.profile = [],
+            state.username = "",
+            state.score = 0,
+            state.error = "",
+            state.categories = [],
+            state.difficulty = "easy",
+            state.selectedCategory = {id: 9, name: "General Knowledge"},
+            state.selectedQuestionAmount = 10,
+            state.results = [],
+            state.searchText = "",
+            state.userExists = false,
+            state.playerChoices = [],
+            state.correctAnswers = [],
+            state.questions = []
+        },
+        setRestart: (state) => {
+            state.score = 0,
+            state.playerChoices = [],
+            state.correctAnswers = [],
+            state.questions = [],
+            state.userExists = true
+        }
     },
     //Getters
     getters:{

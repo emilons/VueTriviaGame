@@ -26,24 +26,17 @@ export default {
   },
   methods: {
     ...mapActions(['loginNewUser', 'fetchSpecificUser']),
-    ...mapMutations(['setUsername', 'setScore', 'setQuestions', 'setCorrectAnswers', 'setPlayerChoices']),
+    ...mapMutations(['setUsername', 'setDefault']),
     onUserNameChange(event){
       this.setUsername(event.target.value.trim())
     },
     
     //Fetches this specific user based on the username input and routes to the game page.
     handleStartGame() {
-      this.resetGameData();
       this.fetchSpecificUser(this.username)
       if (!this.error) {
         this.$router.push('/game')
       }
-    },
-    resetGameData() {
-    this.setScore(0)
-    this.setQuestions([]);
-    this.setCorrectAnswers([]);
-    this.setPlayerChoices([]);
     }
   },
 }

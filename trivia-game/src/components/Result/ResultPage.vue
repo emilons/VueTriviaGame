@@ -39,20 +39,18 @@ export default {
         },
     methods: {
             ...mapActions(['getAllUsers', 'fetchSpecificUser']),
-            ...mapMutations(['setSearchText', 'setScore', 'setQuestions', 'setCorrectAnswers', 'setPlayerChoices']),
+            ...mapMutations(['setSearchText', 'setDefault', 'setRestart']),
             onSearchChange(event) {
                 this.setSearchText(event.target.value.trim())
             },
             handleBack() {
+                this.setDefault();
                 if (!this.error) {
                     this.$router.push('/');
                 }
             },
             handleRestart() {
-                this.setScore(0)
-                this.setQuestions([]);
-                this.setCorrectAnswers([]);
-                this.setPlayerChoices([]);
+                this.setRestart();
                 this.fetchSpecificUser(this.username);
                 if (!this.error) {
                     this.$router.push('/game');
