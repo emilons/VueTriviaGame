@@ -11,10 +11,11 @@ export const getTriviaCategories = async () => {
     }
 }
 
+
 //Get the specific trivia game in the database
 export const getTriviaGame = async (amount, category, difficulty) => {
     try {
-        const gameUrl = 'https://opentdb.com/api.php?' + `&amount=${amount}` + `&category=${category.id}` + `&difficulty=${difficulty}`;
+        const gameUrl = 'https://opentdb.com/api.php?' + `&amount=${amount}` + `&category=${category.id}` + `&difficulty=${difficulty}&encode=url3986`;
         const {results} = await fetch(gameUrl)
             .then(r => r.json())
         return [null, results];
