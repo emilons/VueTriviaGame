@@ -1,3 +1,7 @@
+function sortScores(scoreList) {
+    return scoreList.sort((a,b) => b.highScore - a.highScore);
+}
+
 export const ResultAPI = {
 
     //Get all users in the database
@@ -6,7 +10,7 @@ export const ResultAPI = {
       const apiURL = 'https://vue-questionaire.herokuapp.com'
 
         return await fetch(`${apiURL}/trivia`)
-        .then(response => response.json())
+        .then(response => response.json()).then(result => sortScores(result))
     },
 
     //Get specific user based on the name
