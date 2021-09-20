@@ -1,5 +1,5 @@
 function sortScores(scoreList) {
-    return scoreList.sort((a,b) => b.highScore - a.highScore);
+    return scoreList.sort((a,b) => parseInt(b.highScore) - parseInt(a.highScore));
 }
 
 export const ResultAPI = {
@@ -10,7 +10,11 @@ export const ResultAPI = {
       const apiURL = 'https://vue-questionaire.herokuapp.com'
 
         return await fetch(`${apiURL}/trivia`)
-        .then(response => response.json()).then(result => sortScores(result))
+        .then(response => response.json()).then(result => {
+            console.log(result)
+            return result;
+        }).then(result => sortScores(result))
+
     },
 
     //Get specific user based on the name
