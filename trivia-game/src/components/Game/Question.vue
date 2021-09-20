@@ -1,11 +1,11 @@
 <template>
     <div>
-        <p class="rounded" id="questionText">{{questionText}}</p>
+        <p class="rounded" id="questionText">{{decodeURIComponent(questionText)}}</p>
         <div class="row">
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
                 <div class="" v-for="(answer, index) in answers" :key="index">
-                    <button class="btn btn-primary w-100 mb-4" @click="onAnswerClick">{{answer}}</button>
+                    <button class="btn btn-primary w-100 mb-4" @click="onAnswerClick(answer)">{{decodeURIComponent(answer)}}</button>
                 </div>
             </div>
             <div class="col-sm-4"></div>
@@ -27,10 +27,10 @@ export default {
         }
     },
     methods: {
-        onAnswerClick(event) {
-            let buttonElement = event.target
-            let selectedAnswer = buttonElement.innerText;
-            this.$emit('answer-clicked', selectedAnswer)
+        onAnswerClick(answer) {
+            //let buttonElement = event.target
+            //let selectedAnswer = buttonElement.innerText;
+            this.$emit('answer-clicked', answer)
         }
     }
 }

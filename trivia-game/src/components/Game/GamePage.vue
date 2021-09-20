@@ -18,6 +18,7 @@ import Question from './Question.vue'
 
 export default {
     name: 'GamePage',
+    //Returns the current question index and array of the game
     data() {
         return {
             currentQuestionIndex : 0,
@@ -41,6 +42,7 @@ export default {
         let showResultElement = document.getElementById("showResult");
         showResultElement.style.display="none";
     },
+    //Computed the mapstate
     computed: {
         ...mapState(['difficulty', 'selectedCategory',
             'selectedQuestionAmount','error', 'profile', 
@@ -50,9 +52,11 @@ export default {
             return this.selectedCategory?.name
         }
     },
+    //Methods for mapMutations and mapActions
     methods: {
         ...mapMutations(['setError', 'setScore', 'setHighScore', 'addToPlayerChoices', 'addToCorrectAnswers', 'addToQuestions']),
         ...mapActions(['updateScore', 'loginNewUser']),
+        //Function for handling 
         handleNextQuestion(answer) {
             this.addToPlayerChoices(answer);
             if (answer === this.game[this.currentQuestionIndex].correct_answer) {
@@ -69,6 +73,7 @@ export default {
         //If the user exists then this updates the score.
         //If its a new user this register the user.
         handleShowResults() {
+            console.log(decodeURIComponent("benjamin franklin"))
             if (this.userExists == true) {
                 this.updateScore();
             }

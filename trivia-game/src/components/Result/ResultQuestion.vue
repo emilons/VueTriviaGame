@@ -1,7 +1,7 @@
 <template>
     <div class="rounded m-5 resultQuestions" :class="{'resultCorrect': (choice === answer)}">
         <div>
-            <h4>{{question}}</h4>
+            <h4>{{decodeURIComponent(question)}}</h4>
         </div>
         <div class="row">
             <div class="col-sm-6 row">
@@ -9,7 +9,7 @@
                     <span class="bold">Your answer:</span>
                 </div>
                 <div class="col-sm-6">
-                    <span>{{choice}}</span>
+                    <span>{{decodeURIComponent(choice)}}</span>
                 </div>
 
             </div>
@@ -18,7 +18,7 @@
                     <span class="bold">Correct answer:</span>
                 </div>
                 <div class="col-sm-6">
-                    <span>{{answer}}</span>
+                    <span>{{decodeURIComponent(answer)}}</span>
                 </div>
             </div>
         </div>
