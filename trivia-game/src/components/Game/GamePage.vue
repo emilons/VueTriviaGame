@@ -73,7 +73,6 @@ export default {
         //If the user exists then this updates the score.
         //If its a new user this register the user.
         handleShowResults() {
-            console.log(decodeURIComponent("benjamin franklin"))
             if (this.userExists == true) {
                 this.updateScore();
             }
