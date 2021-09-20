@@ -8,6 +8,7 @@ import {ResultAPI} from '@/api/ResultAPI.js';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+    //State
     state: {
         profile: [],
         username: "",
@@ -24,6 +25,8 @@ export default new Vuex.Store({
         correctAnswers: [],
         questions: [],
     },
+
+    //Mutations
     mutations: {
         setProfile: (state, payload) =>{
             state.profile = payload
@@ -80,20 +83,26 @@ export default new Vuex.Store({
             state.questions.push(payload)
         },
     },
+    //Getters
     getters:{
+        //Sorts based on input from the user
         searchedResults: state => {
             if(state.searchText !== "")
                 return [...state.results.filter(x => x.username.includes(state.searchText))];
             return state.results
         }
     },
+    //Actions
     actions: {
+        //Fetches the categories
         async fetchCategories({commit}) {
             const [error, categories] = await getTriviaCategories();
             commit('setError', error);
             commit('setCategories', categories);
         },
-
+        
+        //Logins a new user with username and highscore
+        //Logins new user, if name exists in the result database it updates the score instead
         async loginNewUser({state, commit}) {
             try{
                 const registerDetails = {
@@ -112,11 +121,9 @@ export default new Vuex.Store({
                 commit("setError", e.message)
              }
         },
-
+        //Updates the score of an existing user
         async updateScore({state, commit}) {
             try{
-                await LoginAPI.updateHighScore(55, 5)
-                
                 if (state.profile.highScore < state.score) {
                     await LoginAPI.updateHighScore(state.score, state.profile.id);
                     this.setHighScore(this.score);
@@ -130,7 +137,7 @@ export default new Vuex.Store({
 
             }
         },
-
+        // Gets all users
         async getAllUsers({commit}){
             try{
                 const results = await ResultAPI.GetAllUsers()
@@ -140,7 +147,7 @@ export default new Vuex.Store({
                 commit("setError", e.message)
             }
         },
-
+        //Fetches user based on username
         async fetchSpecificUser({commit, state}) {
             try{
                 const [profile] = await LoginAPI.getSpecificUser(state.username)
