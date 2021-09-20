@@ -39,7 +39,7 @@ export default {
         },
     methods: {
             ...mapActions(['getAllUsers', 'fetchSpecificUser']),
-            ...mapMutations(['setSearchText', 'setQuestions', 'setCorrectAnswers', 'setPlayerChoices']),
+            ...mapMutations(['setSearchText', 'setScore', 'setQuestions', 'setCorrectAnswers', 'setPlayerChoices']),
             onSearchChange(event) {
                 this.setSearchText(event.target.value.trim())
             },
@@ -49,6 +49,7 @@ export default {
                 }
             },
             handleRestart() {
+                this.setScore(0)
                 this.setQuestions([]);
                 this.setCorrectAnswers([]);
                 this.setPlayerChoices([]);
